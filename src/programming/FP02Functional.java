@@ -2,6 +2,7 @@ package programming;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FP02Functional {
     public static void main(String[] args) {
@@ -9,6 +10,9 @@ public class FP02Functional {
         List<Integer> numbers = List.of(12, 9, 13, 4, 6, 2, 4, 12, 15);
         List<String> courses = List.of("Spring", "Spring Boot", "API", "Microservices",
                 "AWS", "PCF", "Azure", "Docker", "Kubernetes");
+
+        List<Integer> squares = squareList(numbers);
+        System.out.println(squares);
 
         int sum = addFunctional(numbers);
         System.out.println("Sum: " + sum);
@@ -30,6 +34,12 @@ public class FP02Functional {
         courses.stream()
                 .sorted(Comparator.comparing(String::length))
                 .forEach(System.out::println);
+    }
+
+    private static List<Integer> squareList(List<Integer> numbers) {
+        return numbers.stream()
+                .map(num -> num * num)
+                .collect(Collectors.toList());
     }
 
     private static int addFunctional(List<Integer> nums) {
