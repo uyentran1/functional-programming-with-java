@@ -266,5 +266,15 @@ public class FP04CustomClass {
         );
         //{Cloud=[AWS, Azure, Docker, Kubernetes], FullStack=[FullStack], Microservices=[API, Microservices], Framework=[Spring, Spring Boot]}
 
+
+        Predicate<Course> reviewScoreGt95Predicate2 =
+                getPredicateWithCutOffReviewScore(95);
+        Predicate<Course> reviewScoreGt90Predicate2 =
+                getPredicateWithCutOffReviewScore(90);
+    }
+
+    // Higher order function
+    private static Predicate<Course> getPredicateWithCutOffReviewScore(int cutoff) {
+        return course -> course.getReviewScore() > cutoff;
     }
 }
